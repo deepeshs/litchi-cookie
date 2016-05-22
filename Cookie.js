@@ -48,7 +48,7 @@ Cookie.prototype.set = function(strName, strValue, objOpt) {
 	var objOption = objOpt || {};
 	
 	// check and append max-age 
-	if(null !== objOption.maxAge) {
+	if('undefined' !== typeof objOption.maxAge && null !== objOption.maxAge) {
 		if(true === isNaN(objOption.maxAge)) {
 			throw new TypeError('maxAge should be numeric for cookie: ' + strName);
 		}
@@ -56,7 +56,7 @@ Cookie.prototype.set = function(strName, strValue, objOpt) {
 	}
 	
 	// check and append domain 
-	if(null !== objOption.domain) {
+	if('undefined' !== typeof objOption.domain && null !== objOption.domain) {
 		if(false === this.m_reValidName.test(objOption.domain)) {
 			throw new TypeError('Invalid valid for option domain for cookie: ' + strName);
 		}
@@ -64,7 +64,7 @@ Cookie.prototype.set = function(strName, strValue, objOpt) {
 	}
 	
 	// check and append path 
-	if(null !== objOption.path) {
+	if('undefined' !== typeof objOption.path && null !== objOption.path) {
 		if(false === this.m_reValidName.test(objOption.path)) {
 			throw new TypeError('Invalid valid for option path for cookie: ' + strName);
 		}
@@ -72,22 +72,22 @@ Cookie.prototype.set = function(strName, strValue, objOpt) {
 	}
 	
 	// check and append expires 
-	if(null !== objOption.expires) {
+	if('undefined' !== typeof objOption.expires && null !== objOption.expires) {
 		strCookie += '; Expires=' + objOption.expires.toUTCString();
 	}
 	
 	// check and append httpOnly flag 
-	if(null !== objOption.httpOnly) {
+	if('undefined' !== typeof objOption.httpOnly && null !== objOption.httpOnly) {
 		strCookie += '; HttpOnly';
 	}
 	
 	// check and append secure flag 
-	if(null !== objOption.secure) {
+	if('undefined' !== typeof objOption.secure && null !== objOption.secure) {
 		strCookie += '; Secure';
 	}
 	
 	// check and append firstPartyOnly flag 
-	if(null !== objOption.firstPartyOnly) {
+	if('undefined' !== typeof objOption.firstPartyOnly && null !== objOption.firstPartyOnly) {
 		strCookie += '; First-Party-Only';
 	}
 	
@@ -105,9 +105,9 @@ Cookie.prototype.set = function(strName, strValue, objOpt) {
 
 // get specific cookie by key
 Cookie.prototype.get = function(strName) {
-	if(!this.m_objList) this.parse();
+	if(0 === Object.getOwnPropertyNames(this.m_objList).length) this.parse();
 		
-	if(!this.m_objList) return null;
+	if(0 === Object.getOwnPropertyNames(this.m_objList).length) return null;
 		
 	return this.m_objList[strName];
 };

@@ -1,8 +1,11 @@
 {
   "name": "litchi-cookie",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A simple cookie management utility for NodeJs web applications",
   "main": "Cookie.js",
+  "engines": {
+    "node": ">= 0.10"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,10 +15,13 @@
   },
   "keywords": [
     "cookie",
+    "cookies",
     "HTTP",
     "RFC6265"
   ],
-  "author": "Deepesh Shah",
+  "author": {
+    "name": "Deepesh Shah"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/deepeshs/litchi-cookie/issues"
